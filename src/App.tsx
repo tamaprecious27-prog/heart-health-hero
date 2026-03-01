@@ -3,11 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, ProtectedRoute } from "@/hooks/useAuth";
+import { AuthProvider } from "@/hooks/useAuth";
 import AppLayout from "@/components/AppLayout";
-import Auth from "@/pages/Auth";
-import ForgotPassword from "@/pages/ForgotPassword";
-import UpdatePassword from "@/pages/UpdatePassword";
 import Dashboard from "@/pages/Dashboard";
 import LogBP from "@/pages/LogBP";
 import LogWeight from "@/pages/LogWeight";
@@ -27,10 +24,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/update-password" element={<UpdatePassword />} />
-            <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+            <Route element={<AppLayout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/log-bp" element={<LogBP />} />
               <Route path="/log-weight" element={<LogWeight />} />
