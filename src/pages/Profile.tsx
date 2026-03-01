@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { User, LogOut, Save } from 'lucide-react';
+import { User, Save } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export default function ProfilePage() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const { toast } = useToast();
   const [displayName, setDisplayName] = useState('');
   const [age, setAge] = useState('');
@@ -75,9 +75,6 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      <Button variant="outline" onClick={signOut} className="w-full rounded-xl h-11 text-destructive hover:text-destructive">
-        <LogOut className="mr-2 h-4 w-4" /> Sign Out
-      </Button>
     </div>
   );
 }
