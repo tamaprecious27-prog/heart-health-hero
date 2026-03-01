@@ -38,7 +38,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: window.location.origin, data: { display_name: displayName } },
+        options: { emailRedirectTo: `${window.location.origin}/auth`, data: { display_name: displayName } },
       });
       if (error) {
         toast({ title: 'Sign up failed', description: error.message, variant: 'destructive' });
@@ -90,7 +90,17 @@ export default function Auth() {
               {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Create Account'}
             </Button>
           </form>
-          <div className="mt-6 text-center">
+          {isLogin && (
+            <div className="mt-3 text-center">
+              <button
+                onClick={() => navigate('/forgot-password')}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
+          )}
+          <div className="mt-4 text-center">
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
